@@ -1,0 +1,196 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Admin Dashboard</h2>
+    <div class="row mb-3">
+        <div class="col text-center">
+            <button class="btn btn-primary" (click)="showManagers()"><i class="bi bi-eye-fill"></i>&nbsp;&nbsp;Managers</button>&nbsp;
+            <button class="btn btn-primary" (click)="showEmployees()"><i class="bi bi-eye-fill"></i>&nbsp;&nbsp;Employees</button>&nbsp;
+            <button class="btn btn-primary" (click)="showProjects()"><i class="bi bi-eye-fill"></i>&nbsp;&nbsp;Projects</button>
+        </div>
+    </div>
+
+
+    <div class="row mb-3">
+        <div class="col text-center">
+            <button class="addButton" (click)="openModal('manager')">
+                <i class="bi bi-person-plus-fill"></i>&nbsp;&nbsp; Add Manager</button>&nbsp;
+            <button class="addButton" (click)="openModal('employee')">
+                <i class="bi bi-person-plus-fill"></i>&nbsp;&nbsp; Add Employee</button>&nbsp;
+            <button class="addButton" (click)="openModal('project')">
+                <i class="bi bi-person-plus-fill"></i>&nbsp;&nbsp; Add Project</button><br><br>
+        </div>
+    </div>
+
+    
+
+    <div *ngIf="showManagersTable">
+        <h3>Managers</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Manager ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Project ID</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (manager of managers; track manager.managerId) {
+                <tr>
+                    <td>{{ manager.managerId }}</td>
+                    <td>{{ manager.managerName }}</td>
+                    <td>{{ manager.managerEmail }}</td>
+                    <td>{{ manager.projectId }}</td>
+                    <td>
+                        
+                        <button class="btn btn-primary" (click)="openModal('manager', manager)">
+                            <i class="bi bi-pencil-square"></i>&nbsp;&nbsp;Edit</button>&nbsp;
+                        <button class="btn btn-danger" (click)="deleteManager(manager)">
+                            <i class="bi bi-trash-fill"></i>&nbsp;&nbsp;Delete</button>
+                    </td>
+                </tr>
+                } @empty {
+                <tr>
+                    <td colspan="5">No Managers to display</td>
+                </tr>
+                }
+            </tbody>
+            <br>
+        </table>
+    </div>
+
+    <div *ngIf="showEmployeesTable">
+        <h3>Employees</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Project ID</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (employee of employees; track employee.employeeId) {
+                <tr>
+                    <td>{{ employee.employeeId }}</td>
+                    <td>{{ employee.employeeName }}</td>
+                    <td>{{ employee.employeeEmail }}</td>
+                    <td>{{ employee.projectId }}</td>
+                    <td>
+                        <button class="btn btn-primary" (click)="openModal('employee', employee)">
+                            <i class="bi bi-pencil-square"></i>&nbsp;&nbsp;Edit</button>&nbsp;
+                        <button class="btn btn-danger" (click)="deleteEmployee(employee)">
+                            <i class="bi bi-trash-fill"></i>&nbsp;&nbsp;Delete</button>
+                    </td>
+                </tr>
+                } @empty {
+                <tr>
+                    <td colspan="5">No Employees to display</td>
+                </tr>
+                }
+            </tbody>
+            <br>
+        </table>
+    </div>
+
+    <div *ngIf="showProjectsTable">
+        <h3>Projects</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Project ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (project of projects; track project.projectId) {
+                <tr>
+                    <td>{{ project.projectId }}</td>
+                    <td>{{ project.projectName }}</td>
+                    <td>{{ project.projectDesc }}</td>
+                    <td>
+                        <button class="btn btn-info" (click)="toggleEmployees(project.projectId)">
+                            <i class="fetch bi-person-lines-fill"></i>&nbsp;&nbsp;Employees
+                        </button>
+                        <div *ngIf="project.showEmployees && employeesByProject[project.projectId]" class="dropdown-card">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Employee ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (employee of employeesByProject[project.projectId]; track employee.employeeId) {
+                                    <tr>
+                                        <td>{{ employee.employeeId }}</td>
+                                        <td>{{ employee.employeeName }}</td>
+                                        <td>{{ employee.employeeEmail }}</td>
+                                    </tr>
+                                    } @empty {
+                                        <tr><td colspan="3">No employees assigned.</td></tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>&nbsp;&nbsp;
+                        <button class="btn btn-primary" (click)="openModal('project', project)">
+                            <i class="bi bi-pencil-square"></i>&nbsp;&nbsp;Edit</button>&nbsp;
+                        <button class="btn btn-danger" (click)="deleteProject(project)">
+                            <i class="bi bi-trash-fill"></i>&nbsp;&nbsp;Delete</button>
+                    </td>
+                </tr>
+                } @empty {
+                <tr>
+                    <td colspan="4">No Projects to display</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" [ngClass]="{'show': showModal}" style="display: block;"
+        *ngIf="showModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ modalTitle }}</h5>&nbsp;&nbsp;
+                    <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="adminForm" (ngSubmit)="saveData()">
+                        <div class="form-group">
+                            <label for="id">ID</label><br>
+                            <input type="text" class="form-control" id="id" formControlName="id" [readonly]="isEdit"> 
+                            </div>
+                        <div class="form-group">
+                            <label for="name">Name</label><br>
+                            <input type="text" class="form-control" id="name" formControlName="name" required>
+                        </div>
+                        <div class="form-group" *ngIf="modalType !== 'project'">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" formControlName="email" required>
+                        </div>
+                        <div class="form-group" *ngIf="modalType !== 'project'">
+                            <label for="projectId">Project ID</label>
+                            <input type="text" class="form-control" id="projectId" formControlName="projectId" required>
+                        </div>
+                        <div class="form-group" *ngIf="modalType === 'project'">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" formControlName="projectDesc"
+                                required></textarea>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary">+ {{ isEdit ? 'Update' : 'Add' }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

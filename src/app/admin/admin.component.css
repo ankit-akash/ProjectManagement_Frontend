@@ -1,0 +1,198 @@
+/* Table Styling */
+.table {
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #f8f9fa;
+}
+
+.table thead {
+    background-color: #343a40;
+    color: white;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #e9ecef;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.fetchBtn{
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+}
+
+.fetchBtn a {
+    color: white;
+    text-decoration: none;
+}
+
+.fetchBtn:hover {
+    color: #000000;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+}
+
+.btn-danger {
+    background-color: #d41f32;
+    border-color: #d41f32;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-info a {
+    color: white;
+    text-decoration: none;
+}
+
+.btn:hover{
+    color: #000000;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+}
+
+/* Modal Styling */
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    background-color: #007bff;
+    color: white;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-header .close {
+    color: white;
+}
+
+.modal-body {
+    background-color: #f8f9fa;
+}
+
+/* Form Styling */
+.form-control {
+    border-radius: 5px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.close{
+    background: #333;
+}
+
+.dropdown-card {
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    z-index: 1000;
+    width: 350px;
+    margin-top: 8px;
+    border-radius: 8px;
+}
+
+.dropdown-card .table {
+    margin-bottom: 0;
+}
+
+.dropdown-card .table thead {
+    font-size: 12px;
+}
+
+.dropdown-card .table tbody td {
+    font-size: 13px;
+    padding: 8px;
+}
+
+.addButton{
+    background-color: rgb(31, 178, 31);
+    border: 1px solid #555;
+    color: white;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+}
+
+.addButton:hover {
+    background-color: #09620c;
+    border-color: #777;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+}
+
+.addButton:active {
+    background-color: #222;
+    border-color: #444;
+    box-shadow: 0 1px #333;
+    transform: translateY(3px);
+}
+
+.addButton a {
+    color: white;
+    text-decoration: none;
+
+}
+
+.bi-person-plus-fill {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+  
+  .dropdown-card {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1000;
+    width: 300px;
+    margin-top: 5px;
+}
+
+
+.table tbody tr:hover {
+    background-color: #808284; 
+    cursor: pointer;
+  }
+  
+  .table tbody tr {
+    transition: background-color 0.3s ease;
+  }

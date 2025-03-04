@@ -1,0 +1,119 @@
+/* Center the card vertically and horizontally */
+.bg-img {
+    background-image: url("../assets/bg1.jpg");
+    height: 100vh; /* Full viewport height */
+    background-size: cover;
+    background-position: center;
+    display: flex; /* Use flexbox for centering */
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+/* Style the card */
+.card {
+    width: 400px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+}
+
+/* Style the card body */
+.card-body {
+    padding: 3rem; /* Increased padding */
+}
+
+/* Style the card title */
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 2.5rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Style the form labels */
+.form-group label {
+    font-weight: bold; /* Slightly lighter bold */
+    color: #495057;
+    margin-bottom: 0.5rem;
+    display: block; /* Ensure labels are block-level */
+}
+
+/* Style the form inputs */
+.form-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    box-sizing: border-box; /* Include padding and border in width */
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #90bff1; /* Highlight on focus */
+}
+
+/* Style the submit button */
+.btn{
+    border: 1px solid #140505;
+    color: white;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 10px;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #373737;
+    border-color: #777;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+}
+
+.btn:active {
+    background-color: #222;
+    border-color: #444;
+    box-shadow: 0 1px #333;
+    transform: translateY(3px);
+}
+
+.btn a {
+    color: white;
+    text-decoration: none;
+}
+
+
+/* Style the register link */
+.text-center {
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+
+    color: #000000;
+}
+
+.text-center a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.text-center a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+

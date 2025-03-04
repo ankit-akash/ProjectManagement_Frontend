@@ -1,0 +1,156 @@
+.h2{
+    margin-top: auto;
+}
+
+/* Table Styling */
+.table {
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #f8f9fa;
+}
+
+.table thead {
+    background-color: #343a40;
+    color: white;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #e9ecef;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-info a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Modal Styling */
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    background-color: #007bff;
+    color: white;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-header .close {
+    color: white;
+}
+
+.modal-body {
+    background-color: #f8f9fa;
+}
+
+/* Form Styling */
+.form-control {
+    border-radius: 5px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.close{
+    background: rgb(82, 86, 96);
+}
+
+.btn{
+    border: 1px solid #140505;
+    color: white;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+}
+
+.addButton{
+    background-color: rgb(31, 178, 31);
+    border: 1px solid #140505;
+    color: white;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+}
+.addButton:hover{
+    background-color: #09620c;
+    border-color: #777;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+}
+
+.addButton:active {
+    background-color: #222;
+    border-color: #444;
+    box-shadow: 0 1px #333;
+    transform: translateY(3px);
+}
+
+.addButton:active {
+    background-color: #222;
+    border-color: #444;
+    box-shadow: 0 1px #333;
+    transform: translateY(3px);
+}
+
+.btn:hover {
+    background-color: #555;
+    border-color: #777;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+}
+
+.btn:active {
+    background-color: #222;
+    border-color: #444;
+    box-shadow: 0 1px #333;
+    transform: translateY(3px);
+}
+
+.btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.logout {
+    background-color: #dc3545; /* Red background */
+    color: white; /* White text */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+    font-size: 16px; /* Adjust font size as needed */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+    margin-bottom: 1rem; /* Add some bottom margin */
+  }
+  
+  .logout:hover {
+    background-color: #c82333; /* Darker red on hover */
+  }

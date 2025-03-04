@@ -1,0 +1,230 @@
+/* Table Styling (If you have tables) */
+.table {
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #f8f9fa;
+}
+
+.table thead {
+    background-color: #343a40;
+    color: white;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #e9ecef;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-info a {
+    color: white;
+    text-decoration: none;
+}
+
+.btn:hover {
+    color: #000000;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+}
+
+/* Modal Styling (If you have modals) */
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    background-color: #007bff;
+    color: white;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-header .close {
+    color: white;
+}
+
+.modal-body {
+    background-color: #f8f9fa;
+}
+
+/* Form Styling */
+.form-control {
+    border-radius: 5px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.close {
+    background: #333;
+}
+
+/* Add Button Styling */
+.addButton {
+    background-color: rgb(31, 178, 31);
+    border: 1px solid #555;
+    color: white;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+}
+
+.addButton:hover {
+    background-color: #09620c;
+    border-color: #777;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+}
+
+.addButton:active {
+    background-color: #222;
+    border-color: #444;
+    box-shadow: 0 1px #333;
+    transform: translateY(3px);
+}
+
+.addButton a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Icon Styling */
+.bi-person-plus-fill {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* Loading Overlay Styling */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7); /* Adjust opacity as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px; /* Adjust height as needed */
+}
+
+.loading-text {
+    margin-top: 10px;
+}
+
+/* Card Styling */
+.card.shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.card-smooth {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-smooth:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Form Spacing */
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+/* Button Container */
+.d-grid {
+    display: grid;
+}
+
+/* Form Label */
+.form-label {
+    font-weight: bold;
+}
+
+/* Specific form styling */
+.card.shadow .card-body form .mb-3 label {
+    color: #333; /* Darker label text */
+}
+
+.card.shadow .card-body form .mb-3 input.form-control {
+    border: 1px solid #ccc; /* Lighter input border */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle input shadow */
+}
+
+.card.shadow .card-body form .d-grid .btn-primary {
+    background-color: #0069d9; /* Slightly darker primary button */
+    border-color: #0062cc;
+}
+
+.card.shadow .card-body form .d-grid .btn-primary:hover {
+    background-color: #0056b3; /* Darker hover effect */
+    border-color: #0056b3;
+}
+.card.shadow .card-body form .mb-3 input.form-control:focus {
+    border-color: #007bff; /* Highlight color (e.g., blue) */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Optional: add a subtle focus shadow */
+    outline: none; /* Remove default browser outline */
+}
+
+.dropdown-card {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1000;
+    width: 300px; /* Adjust width as needed */
+    margin-top: 5px;
+}

@@ -1,0 +1,105 @@
+body {
+    padding: 20px;
+}
+
+.bg-img{
+    background-image: url("../assets/bg1.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+
+/* Center the card vertically and horizontally */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+
+/* Style the card */
+.card {
+    width: 400px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+/* Style the card title */
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Style the form labels */
+.form-label {
+    font-weight: bold;
+    color: #495057; /* Darker text color */
+}
+
+/* Style the form inputs */
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 0.75rem;
+    font-size: 1rem;
+}
+
+/* Style the submit button */
+.btn{
+    border: 1px solid #140505;
+    color: white;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 10px;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #555;
+    border-color: #777;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+}
+
+.btn:active {
+    background-color: #222;
+    border-color: #444;
+    box-shadow: 0 1px #333;
+    transform: translateY(3px);
+}
+
+.btn a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Style the login link */
+.text-center a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.text-center a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+
+@media (max-width: 768px) {
+    .bg-img {
+        min-height: auto;
+    }
+}

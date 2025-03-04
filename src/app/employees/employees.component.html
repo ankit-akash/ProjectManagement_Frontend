@@ -1,0 +1,63 @@
+<div class="container mt-5">
+    <h2 class="h2 text-center mb-4">View Data</h2>
+    <div class="d-flex justify-content-center mb-3">
+      <button class="btn btn-success mx-2" (click)="fetchEmployees()">
+        <i class="bi bi-eye-fill"></i>&nbsp;&nbsp; Employees</button>
+      <button class="btn btn-primary mx-2" (click)="fetchManagers()">
+        <i class="bi bi-eye-fill"></i>&nbsp;&nbsp; Managers</button>
+      <button class="btn btn-info mx-2" (click)="fetchProjects()">
+        <i class="bi bi-eye-fill"></i>&nbsp;&nbsp; Projects</button>
+      
+    </div>
+  
+    <div *ngIf="showEmployees" class="mt-4">
+      <div class="row">
+        @for(emp of employees; track emp.employeeId) {
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">ID: {{ emp.employeeId }}</h5>
+              <p class="card-text"><strong>Name:</strong> {{ emp.employeeName | uppercase }}</p>
+              <p class="card-text"><strong>Email:</strong> {{ emp.employeeEmail }}</p>
+              <p class="card-text"><strong>Project ID:</strong> {{ emp.projectId }}</p>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  
+    <div *ngIf="showManagers" class="mt-4">
+      <div class="row">
+        @for(manager of managers; track manager.managerId) {
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">ID: {{ manager.managerId }}</h5>
+              <p class="card-text"><strong>Name:</strong> {{ manager.managerName }}</p>
+              <p class="card-text"><strong>Email:</strong> {{ manager.managerEmail }}</p>
+              <p class="card-text"><strong>Project ID:</strong> {{ manager.projectId }}</p>
+
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  
+    <div *ngIf="showProjects" class="mt-4">
+      <div class="row">
+        @for(project of projects; track project.projectId) {
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ project.projectName }}</h5>
+              <p class="card-text"><strong>ID:</strong> {{ project.projectId }}</p>
+              <p class="card-text"><strong>Description:</strong> {{ project.projectDesc }}</p>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
