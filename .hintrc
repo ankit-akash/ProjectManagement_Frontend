@@ -21,7 +21,8 @@
       "default",
       {
         "ignore": [
-          "min-height: auto"
+          "min-height: auto",
+          "backdrop-filter"
         ]
       }
     ]

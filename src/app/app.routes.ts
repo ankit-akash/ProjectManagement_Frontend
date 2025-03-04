@@ -2,7 +2,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmployeesComponent } from './employees/employees.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { ProjectComponent } from './project/project.component';
 import { ManagerComponent } from './manager/manager.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './auth.guard';
@@ -34,11 +33,6 @@ export const routes: Routes = [
     {
         path: "employee",
         component: EmployeesComponent,
-        canActivate: [AuthGuard]
-    },
-    {
-        path: "project",
-        component: ProjectComponent,
         canActivate: [AuthGuard]
     },
 ];

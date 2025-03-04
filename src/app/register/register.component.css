@@ -2,13 +2,6 @@ body {
     padding: 20px;
 }
 
-.bg-img{
-    background-image: url("../assets/bg1.jpg");
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
-}
-
 /* Center the card vertically and horizontally */
 .container {
     display: flex;
@@ -89,17 +82,11 @@ body {
 .text-center a {
     color: #007bff;
     text-decoration: none;
+    font-weight: bold;
     transition: color 0.3s ease;
 }
 
 .text-center a:hover {
     color: #0056b3;
     text-decoration: underline;
-}
-
-
-@media (max-width: 768px) {
-    .bg-img {
-        min-height: auto;
-    }
 }

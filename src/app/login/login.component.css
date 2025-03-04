@@ -1,28 +1,11 @@
-/* Center the card vertically and horizontally */
-.bg-img {
-    background-image: url("../assets/bg1.jpg");
-    height: 100vh; /* Full viewport height */
-    background-size: cover;
-    background-position: center;
-    display: flex; /* Use flexbox for centering */
-    justify-content: center;
-    align-items: center;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-}
 
 /* Style the card */
 .card {
     width: 400px;
     border: none;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
-    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
 /* Style the card body */
@@ -109,6 +92,7 @@
 .text-center a {
     color: #007bff;
     text-decoration: none;
+    font-weight: bold;
     transition: color 0.3s ease;
 }
 
@@ -116,4 +100,16 @@
     color: #0056b3;
     text-decoration: underline;
 }
+
+/* CSS to darken the logo */
+.darken-logo {
+    color: #000; /* Dark color for the logo (black) */
+    opacity: 0.8; /* Slightly decrease the opacity to make it even darker */
+}
+
+.darken-logo:hover {
+    color: #333; /* Dark gray color for hover effect */
+    opacity: 1; /* Full opacity on hover */
+}
+
 

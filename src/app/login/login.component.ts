@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginService } from '../services/loginservice';
 import * as CryptoJS from 'crypto-js';
 import { Constant } from '../login/constant';
+import { NgClass } from '@angular/common';
 
 interface AuthTokenResponse {
   token: string;
@@ -12,7 +13,7 @@ interface AuthTokenResponse {
 
 @Component({
   selector: 'login',
-  imports: [RouterModule, FormsModule],
+  imports: [RouterModule, FormsModule, NgClass],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -21,6 +22,8 @@ export class LoginComponent {
     username: '',
     password: '',
   };
+  loginError = false;
+  loginMessage = ''; 
 
   constructor(private loginService: LoginService, private router: Router) {}
 
@@ -29,6 +32,11 @@ export class LoginComponent {
   }
 
   login() {
+    if (!this.loginData.username || !this.loginData.password) {
+      this.loginMessage = 'Please enter both username and password.';
+      this.loginError = true;
+      return;
+    }
     this.loginService.login(this.loginData).subscribe(
       (token: AuthTokenResponse) => {
         const enrUserName = this.encriptData(this.loginData.username);
@@ -37,29 +45,26 @@ export class LoginComponent {
 
         if (token.role === 'admin') {
           this.router.navigate(['/admin']);
-        } 
-        else if (token.role === 'manager') {
+        } else if (token.role === 'manager') {
           this.router.navigate(['/manager']);
-        }
-        else if(token.role === 'employee'){
-          this.router.navigate(['/employee'])
-        }
-        else {
+        } else if (token.role === 'employee') {
+          this.router.navigate(['/employee']);
+        } else {
           console.warn('Unknown role:', token.role);
           this.router.navigate(['/']);
         }
 
-        alert(
-          `Login Successful as ${token.role}.`
-        );
-        console.log(
-          `Logged in as: ${token.role}.`
-        );
+        alert(`Login Successful as ${token.role}.`);
+        console.log(`Logged in as: ${token.role}.`);
+        this.loginMessage = '';
+        this.loginError = false;
       },
       (error) => {
         console.error('Login failed:', error);
-        alert('Login failed. Please check your credentials.');
+        this.loginMessage = 'Login failed. Please check your credentials.';
+        this.loginError = true;
       }
     );
   }
 }
+

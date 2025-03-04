@@ -1,3 +1,5 @@
+<div>
+
 <div class="custom-navbar">
   <div class="navbar-content">
     <div class="navbar-left">
@@ -5,16 +7,21 @@
       <span><b>Cognizant</b></span>
     </div>
   </div>
+  @if (showLogoutButton()) {
+    <div class="logout-container">
+      <button class="logout" (click)="logout()">
+        <i class="bi bi-box-arrow-left"></i>&nbsp;&nbsp;Logout
+      </button>
+    </div>
+  }
 </div>
-@if (showLogoutButton()) {
-<div class="logout-container">
-  <button class="logout" (click)="logout()">
-    <i class="bi bi-box-arrow-left"></i>&nbsp;&nbsp;Logout
-  </button>
-</div>
-}
 
-<router-outlet></router-outlet>
-<footer class="footer">
-  <p class="mb-0">&copy; 2025 Ankit Akash.</p>
-</footer>
+<div class="page-container">
+  <div class="content">
+    <router-outlet></router-outlet>
+    </div>
+  <footer class="footer">
+    <p class="mb-0">&copy; 2025 Ankit Akash.</p>
+  </footer>
+</div>
+</div>

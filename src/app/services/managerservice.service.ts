@@ -6,16 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ManagerService {
-  private managerApiUrl = 'http://localhost:8060/manager/getAll';
-  private addManagerApiUrl = 'http://localhost:8060/manager/add';
-  private updateManagerApiUrl = 'http://localhost:8060/manager/update/';
-  private deleteManagerApiUrl = 'http://localhost:8060/manager/deleteById/'; 
-  private employeeApiUrl = 'http://localhost:8050/employee/getAll';
-  private addEmployeeApiUrl = 'http://localhost:8050/employee/add';
-  private updateEmployeeApiUrl = 'http://localhost:8050/employee/update/';
-  private deleteEmployeeApiUrl = 'http://localhost:8050/employee/deleteById/'; 
-  private projectApiUrl = 'http://localhost:8055/project/getAll';
-  private addProjectApiUrl = 'http://localhost:8055/project/add';
+  private managerApiUrl = 'http://localhost:3434/manager/getAll';
+  private addManagerApiUrl = 'http://localhost:3434/manager/add';
+  private updateManagerApiUrl = 'http://localhost:3434/manager/update/';
+  private deleteManagerApiUrl = 'http://localhost:3434/manager/deleteById/'; 
+  private employeeApiUrl = 'http://localhost:3434/employee/getAll';
+  private addEmployeeApiUrl = 'http://localhost:3434/employee/add';
+  private updateEmployeeApiUrl = 'http://localhost:3434/employee/update/';
+  private deleteEmployeeApiUrl = 'http://localhost:3434/employee/deleteById/'; 
+  private projectApiUrl = 'http://localhost:3434/project/getAll';
+  private addProjectApiUrl = 'http://localhost:3434/project/add';
 
 
   constructor(private http: HttpClient) {}

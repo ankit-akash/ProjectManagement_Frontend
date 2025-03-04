@@ -7,13 +7,14 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:9194/auth';
+  private baseUrl = 'http://localhost:3434/auth';
  
   constructor(private http: HttpClient) {}
  
   register(user:User): Observable<string>{
     const api=this.baseUrl+`/new`;
+    // debugger;
     return this.http.post(api,user,{ responseType: 'text' });
- 
+
   }
 }

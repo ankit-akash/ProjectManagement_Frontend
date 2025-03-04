@@ -47,7 +47,7 @@ export class EmployeesComponent implements OnInit {
   ngOnInit() {}
 
   fetchEmployees() {
-    this.http.get<Employee[]>('http://localhost:8050/employee/getAll').subscribe(
+    this.http.get<Employee[]>('http://localhost:3434/employee/getAll').subscribe(
       (data: Employee[]) => {
         this.employees = data;
         this.showEmployees = true;
@@ -63,7 +63,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   fetchManagers() {
-    this.http.get<Manager[]>('http://localhost:8060/manager/getAll').subscribe(
+    this.http.get<Manager[]>('http://localhost:3434/manager/getAll').subscribe(
       (data:Manager[]) => {
         this.managers = data;
         this.showEmployees = false;
@@ -78,7 +78,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   fetchProjects() {
-    this.http.get<Project[]>('http://localhost:8055/project/getAll').subscribe(
+    this.http.get<Project[]>('http://localhost:3434/project/getAll').subscribe(
       (data:Project[]) => {
         this.projects = data;
         this.showEmployees = false;

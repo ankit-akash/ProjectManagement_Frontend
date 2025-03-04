@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from 'express';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 interface AuthTokenResponse {
   token: string;
@@ -21,6 +21,10 @@ export class LoginService {
     return this.http.post<AuthTokenResponse>(this.apiUrl, loginData, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     });
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem('token', token);
   }
   getToken(): Observable<any[]> {
     const token = localStorage.getItem('token'); // Retrieve the token

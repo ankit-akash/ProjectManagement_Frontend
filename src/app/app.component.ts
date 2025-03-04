@@ -4,7 +4,6 @@ import { AdminComponent } from "./admin/admin.component";
 import { EmployeesComponent } from "./employees/employees.component";
 import { LoginComponent } from "./login/login.component";
 import { ManagerComponent } from "./manager/manager.component";
-import { ProjectComponent } from "./project/project.component";
 
 @Component({
   selector: 'root',
