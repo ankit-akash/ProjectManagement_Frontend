@@ -1,29 +1,67 @@
-<div class="container mt-1">
-    <h2 class="text-center mb-4">Admin Dashboard</h2>
-    <div class="row mb-3">
-        <div class="col text-center">
-            <button class="btn btn-primary" (click)="showManagers()"><i class="bi bi-eye-fill"></i>&nbsp;&nbsp;Managers</button>&nbsp;
-            <button class="btn btn-primary" (click)="showEmployees()"><i class="bi bi-eye-fill"></i>&nbsp;&nbsp;Employees</button>&nbsp;
-            <button class="btn btn-primary" (click)="showProjects()"><i class="bi bi-eye-fill"></i>&nbsp;&nbsp;Projects</button>
+<div class="admin-container">
+    <div class="admin-header">
+        <div class="input-group">
+            <input type="number" class="formbox" placeholder="Enter ID" [(ngModel)]="searchId">
+            <button class="btn-primary" type="button" (click)="fetchItem()">Fetch</button>
+            <button class="btn-danger" type="button" (click)="clearSearch()">Clear</button>
+        </div>
+        <br>
+        <div class="row mb-3">
+            <div class="col text-center">
+                <button class="btn btn-primary" (click)="showManagers()"><i
+                        class="bi bi-eye-fill"></i>&nbsp;&nbsp;Managers</button>&nbsp;
+                <button class="btn btn-primary" (click)="showEmployees()"><i
+                        class="bi bi-eye-fill"></i>&nbsp;&nbsp;Employees</button>&nbsp;
+                <button class="btn btn-primary" (click)="showProjects()"><i
+                        class="bi bi-eye-fill"></i>&nbsp;&nbsp;Projects</button>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col text-center">
+                <button class="addButton" (click)="openModal('manager')"><i
+                        class="bi bi-person-plus-fill"></i>&nbsp;&nbsp; Add Manager</button>&nbsp;
+                <button class="addButton" (click)="openModal('employee')"><i
+                        class="bi bi-person-plus-fill"></i>&nbsp;&nbsp; Add Employee</button>&nbsp;
+                <button class="addButton" (click)="openModal('project')"><i
+                        class="bi bi-person-plus-fill"></i>&nbsp;&nbsp; Add Project</button><br><br>
+            </div>
         </div>
     </div>
 
 
-    <div class="row mb-3">
-        <div class="col text-center">
-            <button class="addButton" (click)="openModal('manager')">
-                <i class="bi bi-person-plus-fill"></i>&nbsp;&nbsp; Add Manager</button>&nbsp;
-            <button class="addButton" (click)="openModal('employee')">
-                <i class="bi bi-person-plus-fill"></i>&nbsp;&nbsp; Add Employee</button>&nbsp;
-            <button class="addButton" (click)="openModal('project')">
-                <i class="bi bi-person-plus-fill"></i>&nbsp;&nbsp; Add Project</button><br><br>
+    <div class="admin-content">
+        <div *ngIf="showSearchResult">
+            <div *ngIf="fetchedManager" class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Manager Details</h5>
+                    <p class="card-text"><strong>ID:</strong> {{ fetchedManager.managerId }}</p>
+                    <p class="card-text"><strong>Name:</strong> {{ fetchedManager.managerName }}</p>
+                    <p class="card-text"><strong>Email:</strong> {{ fetchedManager.managerEmail }}</p>
+                    <p class="card-text"><strong>Project ID:</strong> {{ fetchedManager.projectId }}</p>
+                </div>
+            </div>
+            <div *ngIf="fetchedEmployee" class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Employee Details</h5>
+                    <p class="card-text"><strong>ID:</strong> {{ fetchedEmployee.employeeId }}</p>
+                    <p class="card-text"><strong>Name:</strong> {{ fetchedEmployee.employeeName }}</p>
+                    <p class="card-text"><strong>Email:</strong> {{ fetchedEmployee.employeeEmail }}</p>
+                    <p class="card-text"><strong>Project ID:</strong> {{ fetchedEmployee.projectId }}</p>
+                </div>
+            </div>
+            <div *ngIf="fetchedProject" class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Project Details</h5>
+                    <p class="card-text"><strong>ID:</strong> {{ fetchedProject.projectId }}</p>
+                    <p class="card-text"><strong>Name:</strong> {{ fetchedProject.projectName }}</p>
+                    <p class="card-text"><strong>Description:</strong> {{ fetchedProject.projectDesc }}</p>
+                </div>
+            </div>
         </div>
     </div>
-
-    
 
     <div *ngIf="showManagersTable">
-        <h3>Managers</h3>
+        <h3 style="justify-self: center;">Managers</h3>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -42,7 +80,6 @@
                     <td>{{ manager.managerEmail }}</td>
                     <td>{{ manager.projectId }}</td>
                     <td>
-                        
                         <button class="btn btn-primary" (click)="openModal('manager', manager)">
                             <i class="bi bi-pencil-square"></i>&nbsp;&nbsp;Edit</button>&nbsp;
                         <button class="btn btn-danger" (click)="deleteManager(manager)">
@@ -55,12 +92,11 @@
                 </tr>
                 }
             </tbody>
-            <br>
         </table>
     </div>
 
     <div *ngIf="showEmployeesTable">
-        <h3>Employees</h3>
+        <h3 style="justify-self: center;">Employees</h3>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -96,7 +132,7 @@
     </div>
 
     <div *ngIf="showProjectsTable">
-        <h3>Projects</h3>
+        <h3 style="justify-self: center;">Projects</h3>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -116,7 +152,8 @@
                         <button class="btn btn-info" (click)="toggleEmployees(project.projectId)">
                             <i class="fetch bi-person-lines-fill"></i>&nbsp;&nbsp;Employees
                         </button>
-                        <div *ngIf="project.showEmployees && employeesByProject[project.projectId]" class="dropdown-card">
+                        <div *ngIf="project.showEmployees && employeesByProject[project.projectId]"
+                            class="dropdown-card">
                             <table class="table table-sm">
                                 <thead>
                                     <tr>
@@ -126,14 +163,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (employee of employeesByProject[project.projectId]; track employee.employeeId) {
+                                    @for (employee of employeesByProject[project.projectId]; track employee.employeeId)
+                                    {
                                     <tr>
                                         <td>{{ employee.employeeId }}</td>
                                         <td>{{ employee.employeeName }}</td>
                                         <td>{{ employee.employeeEmail }}</td>
                                     </tr>
                                     } @empty {
-                                        <tr><td colspan="3">No employees assigned.</td></tr>
+                                    <tr>
+                                        <td colspan="3">No employees assigned.</td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>
@@ -153,7 +193,7 @@
         </table>
     </div>
 
-    <div class="modal fade" tabindex="-1" role="dialog" [ngClass]="{'show': showModal}" style="display: block;"
+    <div class="modal fade" tabindex="1" role="dialog" [ngClass]="{'show': showModal}" style="display: block;"
         *ngIf="showModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -167,8 +207,8 @@
                     <form [formGroup]="adminForm" (ngSubmit)="saveData()">
                         <div class="form-group">
                             <label for="id">ID</label><br>
-                            <input type="text" class="form-control" id="id" formControlName="id" [readonly]="isEdit"> 
-                            </div>
+                            <input type="text" class="form-control" id="id" formControlName="id" [readonly]="isEdit">
+                        </div>
                         <div class="form-group">
                             <label for="name">Name</label><br>
                             <input type="text" class="form-control" id="name" formControlName="name" required>
@@ -193,4 +233,3 @@
             </div>
         </div>
     </div>
-</div>

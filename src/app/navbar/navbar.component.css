@@ -1,7 +1,14 @@
 .content{
-    height: 145vh;
-    background-color: rgb(198, 209, 234)
+    background-image: url("../assets/bg2.jpg"); 
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255,255, 255, 0.9);
 }
+
 
 .title{
     font-size: 25px;
@@ -47,15 +54,19 @@
 }
 
 
+.page-container {
+  min-height: calc(100vh - 100px); /* Adjust based on your header and footer height */
+  padding: 20px;
+}
 
 /* .page-container {
   display: flex;
   min-height: 100vh; 
 } */
 
-/* .content {
-  flex-grow: 0;
-} */
+.content {
+  flex-grow: 3;
+}
 
 .footer {
   background-color: #f0f0f0;

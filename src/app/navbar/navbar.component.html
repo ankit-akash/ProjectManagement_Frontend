@@ -1,0 +1,16 @@
+<div class="custom-navbar">
+    <div class="navbar-content">
+        <div class="navbar-left">
+            <img src="CTSH.png" class="nav-logo" alt="Logo" />
+            <span><b>Cognizant</b></span>
+        </div>
+        <div class="title">{{ title }}</div>
+    </div>
+    @if (showLogoutButton()) {
+        <div class="logout-container">
+            <button class="logout" (click)="logout()">
+                <i class="bi bi-box-arrow-left"></i>&nbsp;&nbsp;Logout
+            </button>
+        </div>
+    }
+</div>

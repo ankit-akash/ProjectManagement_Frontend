@@ -23,7 +23,7 @@ export class RegisterComponent {
     email = '';
     password = '';
     confirmPassword = '';
-    roles = 'admin';
+    roles = 'Select a role';
     registrationMessage = '';
     registrationError = false;
     passwordStrengthMessage = '';
@@ -32,6 +32,7 @@ export class RegisterComponent {
 
     constructor(private router: Router, private authService: AuthService) { }
 
+    //register function
     register() {
         if (!this.name || !this.email || !this.password || !this.confirmPassword || !this.roles) {
             this.registrationMessage = 'Please fill in all fields.';
@@ -51,7 +52,7 @@ export class RegisterComponent {
             return;
         }
 
-        if (this.roles !== 'admin' && this.roles !== 'manager' && this.roles !== 'employee') {
+        if (this.roles !== 'manager' && this.roles !== 'employee') {
             this.registrationMessage = 'Please select a valid role.';
             this.registrationError = true;
             return;

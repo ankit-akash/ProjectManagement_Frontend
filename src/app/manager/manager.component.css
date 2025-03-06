@@ -159,7 +159,7 @@
 }
 
 /* Card Styling */
-.card.shadow {
+/* .card.shadow {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 }
@@ -178,7 +178,7 @@
 .card-title {
     text-align: center;
     margin-bottom: 1rem;
-}
+} */
 
 /* Form Spacing */
 .mb-3 {

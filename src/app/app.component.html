@@ -1,27 +1,11 @@
-<div>
-
-<div class="custom-navbar">
-  <div class="navbar-content">
-    <div class="navbar-left">
-      <img src="CTSH.png" class="nav-logo" alt="Logo" />
-      <span><b>Cognizant</b></span>
-    </div>
-  </div>
-  @if (showLogoutButton()) {
-    <div class="logout-container">
-      <button class="logout" (click)="logout()">
-        <i class="bi bi-box-arrow-left"></i>&nbsp;&nbsp;Logout
-      </button>
-    </div>
-  }
-</div>
-
 <div class="page-container">
-  <div class="content">
-    <router-outlet></router-outlet>
-    </div>
-  <footer class="footer">
-    <p class="mb-0">&copy; 2025 Ankit Akash.</p>
-  </footer>
-</div>
+  <div>
+    <nav></nav>
+    <div class="content">
+      <br>
+      <router-outlet></router-outlet>
+  </div>
+    <footer class="footer">
+      <p>&copy; 2025 Ankit Akash.</p>
+    </footer>
 </div>

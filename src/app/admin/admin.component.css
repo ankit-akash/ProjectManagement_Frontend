@@ -1,3 +1,56 @@
+/* General Container and Header */
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.admin-header {
+    padding: 20px;
+    z-index: 100;
+}
+
+
+/* Search Container */
+.search-container {
+    width: 400px;
+    margin: 0 auto;
+}
+
+/* Button Styles (Consolidated) */
+.btn, .fetchBtn, .searchbtn, .btn-primary, .btn-danger {
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+}
+
+.btn:hover, .fetchBtn:hover, .searchbtn:hover, .btn-primary:hover, .btn-danger:hover {
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff; /* Added white color for better hover effect */
+}
+
+.btn-danger {
+    background-color: #d41f32;
+    border-color: #d41f32;
+    color: #fff; /* Added white color for better hover effect */
+}
+
+.fetchBtn, .searchbtn {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    color: #fff; /* Added white color for better hover effect */
+}
+
 /* Table Styling */
 .table {
     border-radius: 10px;
@@ -18,68 +71,13 @@
     background-color: #f8f9fa;
 }
 
-.fetchBtn{
-    background-color: #17a2b8;
-    border-color: #17a2b8;
-    padding: 8px 16px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-radius: 4px;
-    box-shadow: 0 4px #999;
-    transition: all 0.3s ease;
+.table tbody tr:hover {
+    background-color: #808284;
+    cursor: pointer;
 }
 
-.fetchBtn a {
-    color: white;
-    text-decoration: none;
-}
-
-.fetchBtn:hover {
-    color: #000000;
-    box-shadow: 0 2px #666;
-    transform: translateY(2px);
-}
-
-/* Button Styling */
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-    padding: 8px 16px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-radius: 4px;
-    box-shadow: 0 4px #999;
-    transition: all 0.3s ease;
-}
-
-.btn-danger {
-    background-color: #d41f32;
-    border-color: #d41f32;
-    padding: 8px 16px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-radius: 4px;
-    box-shadow: 0 4px #999;
-    transition: all 0.3s ease;
-}
-
-.btn-info {
-    background-color: #17a2b8;
-    border-color: #17a2b8;
-}
-
-.btn-info a {
-    color: white;
-    text-decoration: none;
-}
-
-.btn:hover{
-    color: #000000;
-    box-shadow: 0 2px #666;
-    transform: translateY(2px);
+.table tbody tr {
+    transition: background-color 0.3s ease;
 }
 
 /* Modal Styling */
@@ -104,25 +102,34 @@
 /* Form Styling */
 .form-control {
     border-radius: 5px;
+    /* Removed the width: 15px; as it was likely incorrect */
+}
+
+.formbox {
+    width: 250px;
+    border-radius: 5px;
+    margin-left: auto;
 }
 
 .form-group label {
     font-weight: bold;
 }
 
-.close{
+.close {
     background: #333;
 }
 
+/* Dropdown Card Styling */
 .dropdown-card {
     position: absolute;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 15px;
+    padding: 15px; /* Consistent padding */
     z-index: 1000;
-    width: 350px;
+    max-width: 350px;
     margin-top: 8px;
     border-radius: 8px;
+    
 }
 
 .dropdown-card .table {
@@ -138,7 +145,8 @@
     padding: 8px;
 }
 
-.addButton{
+/* Add Button Styling */
+.addButton {
     background-color: rgb(31, 178, 31);
     border: 1px solid #555;
     color: white;
@@ -165,34 +173,37 @@
     transform: translateY(3px);
 }
 
-.addButton a {
-    color: white;
-    text-decoration: none;
-
-}
-
 .bi-person-plus-fill {
     width: 20px;
     height: 20px;
     fill: currentColor;
-  }
-  
-  .dropdown-card {
-    position: absolute;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    z-index: 1000;
-    width: 300px;
-    margin-top: 5px;
 }
 
+/* Card Styling */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px; /* Reduced max-width to make the card smaller */
+    margin: 20px auto; /* Centered with increased top and bottom margin */
+    padding: 15px; /* Added padding to make the card look better when smaller */
+}
 
-.table tbody tr:hover {
-    background-color: #808284; 
-    cursor: pointer;
-  }
-  
-  .table tbody tr {
-    transition: background-color 0.3s ease;
-  }
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.data-container {
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+.margin-left-200px {
+    margin-left: 200px;
+}

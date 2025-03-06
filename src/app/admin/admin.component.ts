@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ManagerService, Manager } from '../services/managerservice.service';
+import { ManagerService, Manager } from '../services/manager.service';
 import { EmployeeService, Employee } from '../services/employee.service';
 import { ProjectService, Project } from '../services/project.service';
 import { HttpClientModule } from '@angular/common/http';
-import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'admin',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
   providers: [ManagerService, EmployeeService, ProjectService],
@@ -32,6 +31,12 @@ export class AdminComponent implements OnInit {
   showProjectsTable = false;
   employeesByProject: { [projectId: number]: Employee[] } = {};
 
+  //properties for search/fetch
+  searchId: number | null = null;
+fetchedManager: Manager | null = null;
+fetchedEmployee: Employee | null = null;
+fetchedProject: Project | null = null;
+showSearchResult: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -61,8 +66,10 @@ export class AdminComponent implements OnInit {
     this.loadData();
   }
 
+  //load the data
   loadData() {
-    this.managerService.getManagers().subscribe((data) => (this.managers = data));
+    this.managerService.getManagers().subscribe((data) => (this.managers = data)
+  );
     this.employeeService.getEmployees().subscribe((data) => (this.employees = data));
     this.projectService.getProjects().subscribe((data) => {
         this.projects = data.map(project => ({...project, showEmployees: false}));
@@ -221,22 +228,88 @@ export class AdminComponent implements OnInit {
       });
     }
   }
+
+  fetchItem() {
+    if (this.searchId !== null) {
+      this.fetchedManager = null;
+      this.fetchedEmployee = null;
+      this.fetchedProject = null;
+      this.showSearchResult = true;
+
+      // fetching as Manager
+      this.managerService.getManagers().subscribe(managers => {
+        const foundManager = managers.find(m => m.managerId === this.searchId);
+        if (foundManager) {
+          this.fetchedManager = foundManager;
+          this.showSearchResult = true;
+          this.showManagersTable = false;
+          this.showEmployeesTable = false;
+          this.showProjectsTable = false;
+          return; // Stop further checks
+        }
+
+        // fetching as Employee
+        this.employeeService.getEmployees().subscribe(employees => {
+          const foundEmployee = employees.find(e => e.employeeId === this.searchId);
+          if (foundEmployee) {
+            this.fetchedEmployee = foundEmployee;
+            this.showSearchResult = true;
+            this.showManagersTable = false;
+            this.showEmployeesTable = false;
+            this.showProjectsTable = false;
+            return; // Stop further checks
+          }
+
+          // fetching as Project
+          this.projectService.getProjects().subscribe(projects => {
+            const foundProject = projects.find(p => p.projectId === this.searchId);
+            if (foundProject) {
+              this.fetchedProject = foundProject;
+              this.showSearchResult = true;
+              this.showManagersTable = false;
+              this.showEmployeesTable = false;
+              this.showProjectsTable = false;
+              return; // Stop further checks
+            }
+
+            // If id not found
+            alert('ID not found');
+            this.showSearchResult = false;
+          });
+        });
+      });
+    }
+  }
+
+  clearSearch() {
+    this.searchId = null;
+    this.fetchedManager = null;
+    this.fetchedEmployee = null;
+    this.fetchedProject = null;
+    this.showSearchResult = false;
+    this.showManagersTable = false;
+    this.showEmployeesTable = false;
+    this.showProjectsTable = false;
+  }
   
   showManagers() {
     this.showManagersTable = true;
     this.showEmployeesTable = false;
     this.showProjectsTable = false;
+    this.showSearchResult = false;
   }
-
+  
   showEmployees() {
     this.showManagersTable = false;
     this.showEmployeesTable = true;
     this.showProjectsTable = false;
+    this.showSearchResult = false;
   }
-
+  
   showProjects() {
     this.showManagersTable = false;
     this.showEmployeesTable = false;
     this.showProjectsTable = true;
+    this.showSearchResult = false;
   }
 }

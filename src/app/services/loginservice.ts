@@ -8,12 +8,12 @@ interface AuthTokenResponse {
   role: string;
 }
 
-@Injectable({
+@Injectable({       // This is a decorator that gets injected as a dependency.
   providedIn: 'root'
 })
 export class LoginService {
 
-  private apiUrl = 'http://localhost:3434/auth/authenticate';
+  private apiUrl = 'http://localhost:9194/auth/authenticate';
 
   constructor(private http: HttpClient) {}
 
@@ -22,6 +22,23 @@ export class LoginService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     });
   }
+
+ 
+
+  // login(credentials: any): Observable<any> {
+  //   return this.http.post<any>(`${this.apiUrl}`, credentials).pipe(
+  //     map((response: any) => {
+  //       if (response && response.token && response.userId) {
+  //         this.setToken(response.token);
+  //         console.log("token")
+  //         console.log(this.getToken());
+  //         return response;
+  //       } else {
+  //         throw new Error('Token or userId not found in response');
+  //       }
+  //     })
+  //   );
+  // }
 
   setToken(token: string): void {
     localStorage.setItem('token', token);

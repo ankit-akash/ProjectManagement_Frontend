@@ -9,7 +9,7 @@ import {
   Manager,
   Employee,
   Project,
-} from '../services/managerservice.service';
+} from '../services/manager.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {
   HttpClient,

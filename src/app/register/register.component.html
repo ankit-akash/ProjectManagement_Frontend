@@ -51,29 +51,29 @@
 </div>
 <router-outlet></router-outlet> -->
 
-<div class="bg-img">
-    <div class="container d-flex justify-content-center align-items-center">
+<div class="bg">
+    <div class="container justify-content-center align-items-center">
         <div class="card register-card" style="max-width: 500px;">
             <div class="card-body">
                 <h2 class="card-title text-center">Register</h2>
                 <form (ngSubmit)="register()">
                     <div class="form-outline mb-1">
                         <label class="form-label" for="name">Username</label>
-                        <input type="text" id="name" class="form-control" 
+                        <input type="text" id="name" class="form-control" placeholder="username"
                                [ngClass]="{'is-invalid': registrationError && !name}" 
                                [(ngModel)]="name" name="name" required />
                     </div>
 
                     <div class="form-outline mb-1">
                         <label class="form-label" for="email">Email</label>
-                        <input type="email" id="email" class="form-control" 
+                        <input type="email" id="email" class="form-control" placeholder="Email"
                                [ngClass]="{'is-invalid': registrationError && !email || (registrationError && !emailRegex.test(email))}"
                                [(ngModel)]="email" name="email" required />
                     </div>
 
                     <div class="form-outline mb-1">
-                        <label class="form-label" for="password">Password</label>
-                        <input type="password" id="password" class="form-control" 
+                        <label class="form-label" for="password" placeholder="Password">Password</label>
+                        <input type="password" id="password" class="form-control" placeholder="Password"
                                [ngClass]="{'is-invalid': registrationError && !password || (registrationError && password.length < 5)}"
                                [(ngModel)]="password" name="password" required />
                         <div class="mt-1 text-center" [ngClass]="{'text-danger': passwordStrengthError}" [hidden]="!passwordStrengthMessage">
@@ -82,8 +82,8 @@
                     </div>
 
                     <div class="form-outline mb-1">
-                        <label class="form-label" for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" class="form-control" 
+                        <label class="form-label" for="confirmPassword" >Confirm Password</label>
+                        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password"
                                [ngClass]="{'is-invalid': registrationError && !confirmPassword || (registrationError && password !== confirmPassword)}"
                                [(ngModel)]="confirmPassword" name="confirmPassword" required />
                     </div>
@@ -93,7 +93,6 @@
                         <select class="form-select" id="roles" 
                                 [ngClass]="{'is-invalid': registrationError && !roles}"
                                 [(ngModel)]="roles" name="roles" required>
-                            <option value="admin">Admin</option>
                             <option value="manager">Manager</option>
                             <option value="employee">Employee</option>
                         </select>

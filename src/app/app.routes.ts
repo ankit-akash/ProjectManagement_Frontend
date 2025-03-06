@@ -10,7 +10,8 @@ import { NgModule } from '@angular/core';
 export const routes: Routes = [
     {
         path: "",
-        component: LoginComponent
+        component: LoginComponent,
+        
     },
     {
         path: "register",
@@ -23,18 +24,21 @@ export const routes: Routes = [
     {
         path: "admin",
         component: AdminComponent,
-        canActivate: [AuthGuard] // AuthGuard
+        canActivate: [AuthGuard], // AuthGuard
+        canDeactivate: [AuthGuard]
     },
     {
         path: "manager",
         component: ManagerComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        canDeactivate: [AuthGuard]
     },
     {
         path: "employee",
         component: EmployeesComponent,
-        canActivate: [AuthGuard]
-    },
+        canActivate: [AuthGuard],
+        canDeactivate: [AuthGuard]
+    }
 ];
 
 @NgModule({
