@@ -15,7 +15,7 @@
         <div class="col-md-4 mb-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">ID: {{ emp.employeeId }}</h5>
+              <h5 class="card-title">Employee ID: {{ emp.employeeId }}</h5>
               <p class="card-text"><strong>Name:</strong> {{ emp.employeeName | uppercase }}</p>
               <p class="card-text"><strong>Email:</strong> {{ emp.employeeEmail }}</p>
               <p class="card-text"><strong>Project ID:</strong> {{ emp.projectId }}</p>
@@ -32,7 +32,7 @@
         <div class="col-md-4 mb-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">ID: {{ manager.managerId }}</h5>
+              <h5 class="card-title">Manager ID: {{ manager.managerId }}</h5>
               <p class="card-text"><strong>Name:</strong> {{ manager.managerName }}</p>
               <p class="card-text"><strong>Email:</strong> {{ manager.managerEmail }}</p>
               <p class="card-text"><strong>Project ID:</strong> {{ manager.projectId }}</p>
@@ -51,7 +51,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">{{ project.projectName }}</h5>
-              <p class="card-text"><strong>ID:</strong> {{ project.projectId }}</p>
+              <p class="card-text"><strong>Project ID:</strong> {{ project.projectId }}</p>
               <p class="card-text"><strong>Description:</strong> {{ project.projectDesc }}</p>
             </div>
           </div>

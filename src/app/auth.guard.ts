@@ -10,9 +10,9 @@ import { AppComponent } from './app.component';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate ,CanDeactivate<AppComponent> {
-  constructor(private router: Router) {}
+  constructor(private router: Router) {}    // Inject the Router service
 
-  canActivate(
+  canActivate(    // Checks if a route can be activated
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (localStorage.getItem('token')) {
@@ -25,12 +25,13 @@ export class AuthGuard implements CanActivate ,CanDeactivate<AppComponent> {
     }
   }
   
-  canDeactivate(
+  canDeactivate(    // Checks if a route can be deactivated
     component: AppComponent,
     currentRoute: ActivatedRouteSnapshot,
     currentState: RouterStateSnapshot,
     nextState?: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    //return type of the canActivate or canDeactivate methods within an Angular route guard.
     if (nextState && nextState.url === '/login') {
       return new Observable<boolean>((observer) => {
         const confirmation = confirm('Are you sure you want to log out?');

@@ -33,12 +33,12 @@ export class AdminComponent implements OnInit {
 
   //properties for search/fetch
   searchId: number | null = null;
-fetchedManager: Manager | null = null;
-fetchedEmployee: Employee | null = null;
-fetchedProject: Project | null = null;
-showSearchResult: boolean = false;
+  fetchedManager: Manager | null = null;
+  fetchedEmployee: Employee | null = null;
+  fetchedProject: Project | null = null;
+  showSearchResult: boolean = false;
 
-  constructor(
+  constructor(        //Constructor injects services in component
     private fb: FormBuilder,
     private managerService: ManagerService,
     private employeeService: EmployeeService,
@@ -62,7 +62,7 @@ showSearchResult: boolean = false;
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    // Load data when the component initializes
     this.loadData();
   }
 
@@ -108,94 +108,132 @@ showSearchResult: boolean = false;
     }
 }
 
-  saveData() {
-    if (this.adminForm.valid) {
-        const data = this.adminForm.value;
-        if (this.isEdit) {
-            // Update operation
-            if (this.modalType === 'manager') {
-                this.managerService.updateManager({ managerId: data.id, managerName: data.name, managerEmail: data.email, projectId: data.projectId }).subscribe({
-                    next: (response) => {
-                        this.loadData();
-                        console.log('Manager updated successfully:', response);
-                        alert('Manager updated successfully.');
-                    },
-                    error: (error) => {
-                        console.error('Error updating manager:', error);
-                        alert('Error updating manager. Please check the console.');
-                    },
-                    complete: () => this.closeModal()
-                });
-            } else if (this.modalType === 'employee') {
-                this.employeeService.updateEmployee({ employeeId: data.id, employeeName: data.name, employeeEmail: data.email, projectId: data.projectId }).subscribe({
-                    next: (response) => {
-                        this.loadData();
-                        console.log('Employee updated successfully:', response);
-                        alert('Employee updated successfully.');
-                    },
-                    error: (error) => {
-                        console.error('Error updating employee:', error);
-                        alert('Error updating employee. Please check the console.');
-                    },
-                    complete: () => this.closeModal()
-                });
-            } else if (this.modalType === 'project') {
-                this.projectService.updateProject({ projectId: data.id, projectName: data.name, projectDesc: data.projectDesc }).subscribe({
-                    next: (response) => {
-                        this.loadData();
-                        console.log('Project updated successfully:', response);
-                        alert('Project updated successfully.');
-                    },
-                    error: (error) => {
-                        console.error('Error updating project:', error);
-                        alert('Error updating project. Please check the console.');
-                    },
-                    complete: () => this.closeModal()
-                });
-            }
-        } else {
-          if (this.modalType === 'manager') {
-                this.managerService.addManager({ managerId: data.id, managerName: data.name, managerEmail: data.email, projectId: data.projectId }).subscribe({
-                    next: (response) => {
-                        this.loadData();
-                        console.log('Manager added successfully:', response);
-                        alert('Manager added successfully.');
-                    },
-                    error: (error) => {
-                        console.error('Error adding manager:', error);
-                        alert('Error adding manager. Please check the console.');
-                    },
-                    complete: () => this.closeModal()
-                });
-            } else if (this.modalType === 'employee') {
-                this.employeeService.addEmployee({ employeeId: data.id, employeeName: data.name, employeeEmail: data.email, projectId: data.projectId }).subscribe({
-                    next: (response) => {
-                        this.loadData();
-                        console.log('Employee added successfully:', response);
-                        alert('Employee added successfully.');
-                    },
-                    error: (error) => {
-                        console.error('Error adding employee:', error);
-                        alert('Error adding employee. Please check the console.');
-                    },
-                    complete: () => this.closeModal()
-                });
-            } else if (this.modalType === 'project') {
-                this.projectService.addProject({ projectId: data.id, projectName: data.name, projectDesc: data.projectDesc }).subscribe({
-                    next: (response) => {
-                        this.loadData();
-                        console.log('Project added successfully:', response);
-                        alert('Project added successfully.');
-                    },
-                    error: (error) => {
-                        console.error('Error adding project:', error);
-                        alert('Error adding project. Please check the console.');
-                    },
-                    complete: () => this.closeModal()
-                });
-            }
-        }
+saveData() {
+  if (this.adminForm.valid) {
+    const data = this.adminForm.value;
+
+    let idExists = false;
+    let currentId: number | undefined;
+
+    if (this.modalType === 'manager') {
+      currentId = Number(data.id); // Convert to number
+      idExists = this.managers.some(manager => manager.managerId === currentId);
+    } else if (this.modalType === 'employee') {
+      currentId = Number(data.id);
+      idExists = this.employees.some(employee => employee.employeeId === currentId);
+    } else if (this.modalType === 'project') {
+      currentId = Number(data.id);
+      idExists = this.projects.some(project => project.projectId === currentId);
     }
+
+    if (idExists && !this.isEdit) {
+      if (currentId !== undefined) {
+        alert(`ID ${currentId} already exists. Please use a different ID.`);
+      } else {
+        alert("An ID already exists. Please use a different ID.");
+      }
+      return;
+    }
+
+    if (this.isEdit) {
+      // Update logic (as before)
+      if (this.modalType === 'manager') {
+          this.managerService.updateManager({ managerId: data.id, managerName: data.name, managerEmail: data.email, projectId: data.projectId }).subscribe({
+          next: (response) => {
+            this.loadData();
+            console.log('Manager updated successfully:', response);
+            alert('Manager updated successfully.');
+          },
+          error: (error) => {
+            console.error('Error updating manager:', error);
+            alert('Error updating manager. Please check the console.');
+          },
+          complete: () => this.closeModal()
+        });
+      } else if (this.modalType === 'employee') {
+          this.employeeService.updateEmployee({ employeeId: data.id, employeeName: data.name, employeeEmail: data.email, projectId: data.projectId }).subscribe({
+          next: (response) => {
+            this.loadData();
+            console.log('Employee updated successfully:', response);
+            alert('Employee updated successfully.');
+          },
+          error: (error) => {
+            console.error('Error updating employee:', error);
+            alert('Error updating employee. Please check the console.');
+          },
+          complete: () => this.closeModal()
+        });
+      } else if (this.modalType === 'project') {
+          this.projectService.updateProject({ projectId: data.id, projectName: data.name, projectDesc: data.projectDesc }).subscribe({
+          next: (response) => {
+            this.loadData();
+            console.log('Project updated successfully:', response);
+            alert('Project updated successfully.');
+          },
+          error: (error) => {
+            console.error('Error updating project:', error);
+            alert('Error updating project. Please check the console.');
+          },
+          complete: () => this.closeModal()
+        });
+      }
+    } else {
+        // Add logic (as before)
+      if (this.modalType === 'manager') {
+        this.managerService.addManager({ managerId: data.id, managerName: data.name, managerEmail: data.email, projectId: data.projectId }).subscribe({
+          next: (response) => {
+            this.loadData();
+            console.log('Manager added successfully:', response);
+            alert('Manager added successfully.');
+          },
+          error: (error) => {
+            console.error('Error adding manager:', error);
+            alert('Error adding manager. Please check the console.');
+          },
+          complete: () => this.closeModal()
+        });
+      } else if (this.modalType === 'employee') {
+        this.employeeService.addEmployee({ employeeId: data.id, employeeName: data.name, employeeEmail: data.email, projectId: data.projectId }).subscribe({
+          next: (response) => {
+            this.loadData();
+            console.log('Employee added successfully:', response);
+            alert('Employee added successfully.');
+          },
+          error: (error) => {
+            console.error('Error adding employee:', error);
+            alert('Error adding employee. Please check the console.');
+          },
+          complete: () => this.closeModal()
+        });
+      } else if (this.modalType === 'project') {
+        this.projectService.addProject({ projectId: data.id, projectName: data.name, projectDesc: data.projectDesc }).subscribe({
+          next: (response) => {
+            this.loadData();
+            console.log('Project added successfully:', response);
+            alert('Project added successfully.');
+          },
+          error: (error) => {
+            console.error('Error adding project:', error);
+            alert('Error adding project. Please check the console.');
+          },
+          complete: () => this.closeModal()
+        });
+      }
+    }
+  } else {
+    this.validateAllFormFields(this.adminForm);
+  }
+}
+
+validateAllFormFields(formGroup: FormGroup) {
+  Object.keys(formGroup.controls).forEach(field => {
+    const control = formGroup.get(field);
+    if (control instanceof FormGroup) {
+      this.validateAllFormFields(control);
+    } else {
+      control?.markAsTouched({ onlySelf: true });
+    }
+  });
 }
 
   deleteManager(manager: Manager) {

@@ -75,7 +75,7 @@ export class RegisterComponent {
             roles: this.roles,
         };
 
-        this.authService.register(user).subscribe(
+        this.authService.register(user).subscribe(    //triggers http request
             (response: string) => {
                 alert('Registration successful!');
                 this.router.navigate(['/login']);

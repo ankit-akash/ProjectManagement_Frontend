@@ -13,11 +13,11 @@ export interface Employee {
   providedIn: 'root',
 })
 export class EmployeeService {
-  private employeeApiUrl = 'http://localhost:8050/employee';
+  private employeeApiUrl = 'http://localhost:3434/employee';
 
   constructor(private http: HttpClient) {}
 
-  getEmployees(): Observable<Employee[]> {
+  getEmployees(): Observable<Employee[]> {    //Perform HTTP request to the server
     return this.http.get<Employee[]>(`${this.employeeApiUrl}/getAll`);
   }
 

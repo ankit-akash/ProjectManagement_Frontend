@@ -65,9 +65,9 @@ export class ManagerComponent implements OnInit {
 
   editEmployee(employee: Employee) {
     employee.isEditing = true;
-    this.cdr.detectChanges(); // Trigger change detection
+    this.cdr.detectChanges(); // Trigger change detection while editing
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {}   // Load data when the component initializes
 
   onViewManagers() {
     console.log('Viewing Manager Details');
@@ -104,7 +104,21 @@ export class ManagerComponent implements OnInit {
   }
 
   onAddManagerSubmit() {
+    // Check for empty fields
+    if (!this.newManager.managerId || !this.newManager.managerName || !this.newManager.managerEmail || !this.newManager.projectId) {
+      alert('Please fill in all fields.');
+      return; /// Exit the function
+    }
+    const idExists = this.managers.some(manager => manager.managerId === this.newManager.managerId);
+    //some() method checks for common element in the array
+
+    if (idExists) {
+      alert(`Manager ID ${this.newManager.managerId} already exists.`);
+      return;
+    }
+
     this.managerService.addManager(this.newManager).subscribe(
+      //subscribe() does lazy execution of an Observable
       (response) => {
         console.log('Manager added successfully:', response);
         alert('Manager Added Successfully');
@@ -115,12 +129,14 @@ export class ManagerComponent implements OnInit {
           projectId: 0,
         };
         this.showAddManagerForm = false;
+        this.onViewManagers();
       },
       (error: HttpErrorResponse) => {
         console.error('Error adding manager:', error);
       }
     );
   }
+
 
   onViewEmployees() {
     console.log('Viewing Employee Details');
@@ -156,7 +172,19 @@ export class ManagerComponent implements OnInit {
   }
 
   onAddEmployeeSubmit() {
+    if (!this.newEmployee.employeeId || !this.newEmployee.employeeName || !this.newEmployee.employeeEmail || !this.newEmployee.projectId) {
+      alert('Please fill in all fields.');
+      return;
+    }
+
+    const idExists = this.employees.some(employee => employee.employeeId === this.newEmployee.employeeId);
+    if (idExists) {
+      alert(`Employee ID ${this.newEmployee.employeeId} already exists.`);
+      return;
+    }
+
     this.managerService.addEmployee(this.newEmployee).subscribe(
+    //subscribe() does lazy execution of an Observable
       (response) => {
         console.log('Employee added successfully:', response);
         alert('Employee Added Successfully');
@@ -167,6 +195,7 @@ export class ManagerComponent implements OnInit {
           projectId: 0,
         };
         this.showAddEmployeeForm = false;
+        this.onViewEmployees();
       },
       (error: HttpErrorResponse) => {
         console.error('Error adding employee:', error);
@@ -177,6 +206,7 @@ export class ManagerComponent implements OnInit {
   deleteEmployee(employeeId: number) {
     if (confirm('Are you sure you want to delete this Employee?')) {
       this.managerService.deleteEmployee(employeeId).subscribe(
+      //subscribe() does lazy execution of an Observable
         (response) => {
           console.log('Employee deleted successfully:', response);
           alert('Employee Deleted Successfully');
@@ -200,6 +230,7 @@ export class ManagerComponent implements OnInit {
     this.showAddProjectForm = false;
     this.isLoadingProjects = true;
     this.managerService.getProjects().subscribe(
+    //subscribe() does lazy execution of an Observable
       (data: Project[]) => {
         this.projects = data;
         this.managers = [];
@@ -227,12 +258,25 @@ export class ManagerComponent implements OnInit {
   }
 
   onAddProjectSubmit() {
+    if (!this.newProject.projectId || !this.newProject.projectName || !this.newProject.projectDesc) {
+      alert('Please fill in all fields.');
+      return;
+    }
+
+    const idExists = this.projects.some(project => project.projectId === this.newProject.projectId);
+    if (idExists) {
+      alert(`Project ID ${this.newProject.projectId} already exists.`);
+      return;
+    }
+
     this.managerService.addProject(this.newProject).subscribe(
+    //subscribe() does lazy execution of an Observable
       (response) => {
         console.log('Project added successfully:', response);
         alert('Project Added Successfully');
         this.newProject = { projectId: 0, projectName: '', projectDesc: '' };
         this.showAddProjectForm = false;
+        this.onViewProjects();
       },
       (error: HttpErrorResponse) => {
         console.error('Error adding project:', error);
@@ -240,9 +284,11 @@ export class ManagerComponent implements OnInit {
     );
   }
 
+
   deleteManager(managerId: number) {
     if (confirm('Are you sure you want to delete this manager?')) {
       this.managerService.deleteManager(managerId).subscribe(
+      //subscribe() does lazy execution of an Observable
         (response) => {
           console.log('Manager deleted successfully:', response);
           alert('Manager Deleted Successfully');
@@ -261,7 +307,13 @@ export class ManagerComponent implements OnInit {
   }
 
   updateManager(manager: Manager) {
+    const idExists = this.managers.some(m => m.managerId === manager.managerId && m !== manager);
+    if (idExists) {
+      alert(`Manager ID ${manager.managerId} already exists.`);
+      return;
+    }
     this.managerService.updateManager(manager).subscribe(
+    //subscribe() does lazy execution of an Observable
       (response) => {
         console.log('Manager updated successfully:', response);
         alert('Manager Updated Successfully');
@@ -275,17 +327,22 @@ export class ManagerComponent implements OnInit {
   }
 
   updateEmployee(employee: Employee) {
+    const idExists = this.employees.some(e => e.employeeId === employee.employeeId && e !== employee);
+    if (idExists) {
+      alert(`Employee ID ${employee.employeeId} already exists.`);
+      return;
+    }
     this.managerService.updateEmployee(employee).subscribe(
+    //subscribe() does lazy execution of an Observable
       (response) => {
         console.log('Employee updated successfully:', response);
         alert('Employee Updated Successfully');
         employee.isEditing = false;
-        this.cdr.detectChanges(); // Trigger change detection
+        this.cdr.detectChanges();
       },
       (error: HttpErrorResponse) => {
         console.error('Error updating employee:', error);
       }
     );
   }
-
 }
