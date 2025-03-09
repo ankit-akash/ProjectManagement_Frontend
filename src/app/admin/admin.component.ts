@@ -116,11 +116,13 @@ saveData() {
     let currentId: number | undefined;
 
     if (this.modalType === 'manager') {
-      currentId = Number(data.id); // Convert to number
+      currentId = Number(data.id);
       idExists = this.managers.some(manager => manager.managerId === currentId);
+
     } else if (this.modalType === 'employee') {
       currentId = Number(data.id);
       idExists = this.employees.some(employee => employee.employeeId === currentId);
+      
     } else if (this.modalType === 'project') {
       currentId = Number(data.id);
       idExists = this.projects.some(project => project.projectId === currentId);

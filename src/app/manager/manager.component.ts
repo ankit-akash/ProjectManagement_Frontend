@@ -67,7 +67,9 @@ export class ManagerComponent implements OnInit {
     employee.isEditing = true;
     this.cdr.detectChanges(); // Trigger change detection while editing
   }
-  ngOnInit(): void {}   // Load data when the component initializes
+  projectsLoadedForManager: boolean = false;
+
+ngOnInit(): void {}   // Load data when the component initializes
 
   onViewManagers() {
     console.log('Viewing Manager Details');
@@ -107,7 +109,7 @@ export class ManagerComponent implements OnInit {
     // Check for empty fields
     if (!this.newManager.managerId || !this.newManager.managerName || !this.newManager.managerEmail || !this.newManager.projectId) {
       alert('Please fill in all fields.');
-      return; /// Exit the function
+      return; // Exit the function
     }
     const idExists = this.managers.some(manager => manager.managerId === this.newManager.managerId);
     //some() method checks for common element in the array
@@ -116,6 +118,12 @@ export class ManagerComponent implements OnInit {
       alert(`Manager ID ${this.newManager.managerId} already exists.`);
       return;
     }
+
+    // Project ID Validation
+  //   if (!this.projects.some((project) => project.projectId === Number(this.newManager.projectId))) {
+  //     alert(`Project ID ${this.newManager.projectId} does not exist.`);
+  //     return;
+  // }
 
     this.managerService.addManager(this.newManager).subscribe(
       //subscribe() does lazy execution of an Observable
@@ -178,6 +186,8 @@ export class ManagerComponent implements OnInit {
     }
 
     const idExists = this.employees.some(employee => employee.employeeId === this.newEmployee.employeeId);
+    //some() method checks for common element in the array
+
     if (idExists) {
       alert(`Employee ID ${this.newEmployee.employeeId} already exists.`);
       return;
@@ -185,6 +195,7 @@ export class ManagerComponent implements OnInit {
 
     this.managerService.addEmployee(this.newEmployee).subscribe(
     //subscribe() does lazy execution of an Observable
+
       (response) => {
         console.log('Employee added successfully:', response);
         alert('Employee Added Successfully');
