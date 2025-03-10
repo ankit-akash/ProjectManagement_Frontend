@@ -13,7 +13,7 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
   console.log(' AuthInterceptor is running...');
   
   const token = localStorage.getItem('token');
-  console.log('🔍 Token from Local Storage:', token);
+  console.log('Token from Local Storage:', token);
 
   // Check if a token exists
   if (token) {
